@@ -1,12 +1,11 @@
 ---
-title: "Proposal Title"
+title: "Generalized processes facilitator with R"
 author:
-  - name: Annie Easley
-    orcid: 5555-5555-5555-5555
+  - name: Daniel RAKOTOMALALA
     affiliations:
-      - "Lewis Research Center, National Aeronautics and Space Administration"
+      - "None (independent)"
 
-date: today
+date: September, 2025
 date-format: iso
 format:
   html:

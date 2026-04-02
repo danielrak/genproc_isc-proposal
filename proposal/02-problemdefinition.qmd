@@ -21,4 +21,52 @@ It is important to cover:
 -->
 ```
 
-An example in-text citation [@wickham2016].
+Let be an R user in his/her job, who must perform a certain task $t_1$ using R. This task consists of applying a process $P$, given a certain quantity of parameters $\{p_k\}_{k = 1, ..., K}$.
+
+$$
+t_1 = P(\{p_k\}_{k = 1, ..., K})
+$$
+
+The parameters here are defined broadly. A parameter can be an input, a parameter of a function, or an output.
+
+As a minimal illustration, $t$ may consists of converting a data frame (written somewhere on the computer and accessible to the user) from a format to another. The following shows a corresponding R code specification of $P(\{p_k\}_{k = 1, ..., K})$:
+
+```{r, eval = FALSE}
+library(magrittr)
+
+rio::import("~/input_folder_1/file_1.csv") %>% 
+  rio::export("~/output_folder_1/file_1.parquet")
+```
+
+where $K = 2$, $p_1 \equiv "\sim/input \_folder/file\_1.csv"$ and $p_2 \equiv "\sim/input \_folder/file\_2.parquet"$.
+
+The ambition of this project is to create an R framework that will help the user carrying out $t_1$, and easily scale it up to any number of tasks $t_n, n = 1, ..., N$ of the same structure, *i.e* with the same specification of $P$ for all $n$. This framework must satisfy the following principles:
+
+-   Traceability: checking the filled-up framework allows to understand exactly what's going on.
+
+-   Reproducibility: lauching the filled-up framework with the same values again and again yields exactly to the same results.
+
+-   User-friendliness: significantly helping the user perform advanced R programming tasks, to some extent.
+
+-   Scalability: costs increase (tediousness, process-duration, etc.) implied by bigger inputs are minimized.
+
+-   Transferability: for similar but different operations, the framework can be easily leveraged, by the same user or any other users.
+
+Translated to the minimal illustration above, the framework will help the user in easily converting any number of data frames. It typically avoids writing codes like those in the chunk above, which are not of best practices:
+
+```{r, eval = FALSE}
+library(magrittr)
+
+rio::import("~/input_folder_1/file_1.csv") %>% 
+  rio::export("~/output_folder_1/file_1.parquet")
+
+rio::import("~/input_folder_2/file_2.csv") %>% 
+  rio::export("~/output_folder_2/file_2.parquet")
+
+# ...etc...
+
+rio::import("~/input_folder_N/file_N.csv") %>% 
+  rio::export("~/output_folder_N/file_N.parquet")
+```
+
+Obviously, this proposition reminds a lot of loops [@DOU22, for instance] and functional programming [@WIK19].
