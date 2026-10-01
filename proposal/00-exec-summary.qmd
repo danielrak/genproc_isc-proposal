@@ -4,3 +4,52 @@
 This section provides a condensed view of the entire proposal, one page long.
 It should be a comprehensive high-level overview that captures the essence of the proposal, including its goals, methods, expected outcomes, deliverables, and budget.
 -->
+
+When a procedure runs over many cases (files, regions, subjects,
+parameter sets) and one case fails, the R user needs to see which case
+failed and why, re-run that case only, and keep the record of the
+original run. When an input file changes, the user needs to know which
+cases depend on it. `genproc`, on CRAN since May 2026, gives this with
+one call. The user supplies a function and a *mask*, a `data.frame`
+with one row per case. `genproc()` runs the function on every row and
+returns one object: a log with one row per case and the real traceback
+of each failure; a reproducibility snapshot (R and package versions,
+the exact mask, a size-and-date fingerprint of every input file named
+in the mask); and helpers that compare two runs and re-run only the
+cases that failed or whose inputs changed. Parallel execution (on
+`future`), non-blocking execution and progress reporting (on
+`progressr`) are optional layers that compose on top.
+
+```r
+r <- genproc(convert, mask, parallel = parallel_spec(workers = 4))
+errors(r)                    # the failed cases, with their tracebacks
+diff_inputs(r_previous, r)   # which input files changed since the last run
+rerun_failed(r, convert)     # re-run the failed cases only
+```
+
+Version 0.2.0 ships these five layers with 13 exported functions, close
+to 300 test blocks, continuous integration on Linux, macOS and Windows,
+and a documentation site. Its result object follows one compatibility
+rule: fields are added, never removed or renamed.
+
+The ambition goes beyond one package: a written, versioned contract for
+iterated runs in R (mask, result, errors, retries, reproducibility,
+monitoring), published for review and proposed to other package
+authors, with `genproc` as its reference implementation. Henrik
+Bengtsson, author of `future` and the R Foundation's representative on
+the ISC, commented in detail on the outline in April 2026 and saw the
+same need; his advice shaped the plan below.
+
+The grant funds twelve months of work, January to December 2027, in
+five milestones. Each funded milestone leaves a documented, tested and
+usable improvement: (1) the written contract, including the
+error-tolerance and retry rules; (2) a backwards-compatible
+`genproc_mask` class that implements it; (3) error replay, content-hash
+input fingerprints, live monitoring of non-blocking runs and
+cancellation; (4) evaluation by outside users and a worked `targets`
+integration; (5) a 1.0.0 release with a stable lifecycle and a
+succession process.
+
+**Budget: 13 000 USD**, all labour, itemised by milestone. If the ISC
+funds only the first three milestones, the community still gets the
+contract and a package that is strictly more capable than today.

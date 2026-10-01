@@ -17,6 +17,49 @@ section.
 Include concrete actions you will take and estimated timeline.
 -->
 
+The grant takes `genproc` from an experimental 0.2.0 to a stable 1.0.0
+in twelve months, January to December 2027, in five milestones:
+
+1. **Write the contract.** The package relies on an implicit model: a
+   *unit* is a mask row, a *parameter* a mask column, and operations
+   are independent across units. Milestone 1 writes it down as a
+   versioned vignette and glossary, and defines the error-tolerance
+   and retry rules for sequential runs first, then for parallel runs:
+   what a retry is, when it is allowed, how it is logged, and what
+   counts as a handled error as opposed to an interruption, a worker
+   failure or a partly written output. It adds two concepts, shown on
+   a file-conversion mask with columns `src_dir`, `src_file` and
+   `dst_file`. A *parameter dependency* says that `dst_file` is
+   computed from `src_file` (same name, new extension), so it is
+   derived rather than typed and cannot drift out of step. An *input
+   group* says that `src_dir` and `src_file` together name one input
+   file, so fingerprints and `diff_inputs()` follow that file rather
+   than two unrelated strings. Published for public review before
+   dependent code is merged.
+2. **Implement it in the mask.** A `genproc_mask` S3 class on which
+   the user declares dependencies and input groups, and which gives
+   each case an identity based on its free parameters, so that
+   reordering rows does not change it and repeated rows are told
+   apart. Every existing `data.frame` mask keeps working unchanged.
+3. **Finish the execution layers.** Error replay, content-hash input
+   fingerprints, live progress for non-blocking runs, cancellation,
+   each with its supported backends documented.
+4. **Test it with others.** Outside users run documented
+   failure-and-recovery tasks on a beta release and their feedback is
+   published; a worked example shows a `genproc` run as one step of a
+   `targets` pipeline.
+5. **Prepare the hand-over.** Release 1.0.0 with lifecycle "stable", a
+   contributor guide, a release checklist, documented design decisions
+   and a succession process.
+
+A Shiny proof of concept (<https://github.com/danielrak/genprocShiny>)
+stays outside the grant; it will be rebuilt on the public API later.
+
+Benefits at three levels. Practitioners get a ready-made contract
+instead of hand-written scaffolding. Package authors get a mask and
+result API to build domain tools on. The ecosystem gets a written,
+reviewed contract for what a robust iterated run is.
+
 ## Detail
 <!--
 Go into more detail about the specifics of the project and how it delivers
@@ -31,11 +74,23 @@ Depending on project type the detail section should include:
 What is the smallest thing you can build that delivers value to your users?
 -->
 
+The MVP already exists: `genproc` 0.2.0 on CRAN, with its five layers,
+result contract, tests and documentation. Each milestone adds one
+reviewable artefact in a tagged release.
+
 ### Architecture
 
 <!--
 What does the high-level architecture look like?
 -->
+
+`genproc()` wraps an iteration kernel in orthogonal layers: *logged*
+and *reproducibility* are always on; *parallel* (`future.apply` over
+the user's or a temporary `future::plan()`), *non-blocking* (a
+background future polled with `status()` and collected with `await()`)
+and *monitoring* (`progressr` conditions) are opt-in and compose. A new
+layer is an extra argument to `genproc()` and extra fields on
+`genproc_result`.
 
 ### Assumptions
 
@@ -43,8 +98,35 @@ What does the high-level architecture look like?
 What assumptions are you making that, if proven false, would invalidate the project?
 -->
 
+- The `future` framework remains the standard for R parallelism. The
+  futureverse plans automatic negotiation between backends; `genproc`
+  stays above `plan()` and does not negotiate resources itself, so that
+  evolution is an opportunity, not a conflict.
+- A backwards-compatible generalisation of the mask is feasible. The
+  0.2.0 test suite covers every documented mask pattern and gates every
+  Milestone 2 change.
+- One contract serves the settings of the Problem section; the
+  Milestone 1 review and the Milestone 4 evaluation test this.
+
+Failure modes and their handling. The sole developer is unavailable for
+a period: milestones are ordered by value, the ISC is told in the next
+monthly note, and a revised schedule or a reduced scope is agreed. Live
+monitoring of non-blocking runs depends on backend behaviour: the
+fallback is to collect progress in the background and report on
+request. `genproc_mask` breaks an existing usage: reverted and
+redesigned behind the compatibility suite before release. Too few
+outside users for Milestone 4: the tasks are run with the proposer's
+own team and the report says so. No co-maintainer by Milestone 5: 1.0.0
+ships, the proposer remains maintainer until a hand-over is accepted,
+and the closing report says so.
+
 ### External dependencies
 
 <!--
 What external dependencies does the project have (e.g. libraries, services, other projects, etc.)?
 -->
+
+Runtime imports stay `future`, `future.apply`, `progressr` and base R.
+The grant adds no hard dependency. Optional additions: `digest` or
+`rlang`'s hashing for content-hash fingerprints; `targets` in Suggests
+for the integration vignette.

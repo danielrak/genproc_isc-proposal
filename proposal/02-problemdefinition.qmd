@@ -21,4 +21,65 @@ It is important to cover:
 -->
 ```
 
-An example in-text citation [@wickham2016].
+## What the problem is
+
+R users routinely write a procedure that works on one case (one file,
+one region, one subject, one parameter set) and then need to run it on
+many. The step from "a script that works once" to "a run over a hundred
+cases" is usually improvised: a `for` loop or `lapply()` with an ad hoc
+`tryCatch()`, some `future` code added for speed, and no record of
+which package versions were loaded or which input files were read. When one case fails, the run often stops, or the
+failure goes unnoticed. When an upstream file is rewritten between two
+runs, nothing flags it. When someone asks what exactly was run, the
+answer is reconstructed from memory.
+
+## Who it affects
+
+Anyone who applies the same procedure to many entities. The primary
+setting, and the proposer's own practice, is file processing in public
+statistics and recurring reporting: the same processing applied to
+every region, or every month over the same paths, where the run must
+be auditable (which code, which inputs, which cases failed and why) and
+a silently modified input file is a common cause of a wrong number
+reaching a decision maker. The same pattern appears in clinical data
+pipelines (one derivation per study or site, with traceback and
+environment capture required for review) and in simulation studies
+(thousands of parameter sets, where one failure must not cost the
+others).
+
+## Why it should be solved
+
+Each team pays the same improvisation cost on its own, and the code it
+produces is rarely reusable or auditable by anyone else. Error handling
+in `apply()`-style loops is a frequent user question (see Consulted).
+Codifying the pattern once, behind a stable contract, lowers that cost
+for the whole community, as `testthat` did for testing. The aim is a
+proposed, versioned contract for iterated runs in R, with `genproc` as
+its reference implementation.
+
+## Existing work
+
+Every ingredient exists. `purrr` [@purrr] gives `safely()` and
+`insistently()` (retries); `furrr` [@furrr] and `future.apply`
+[@future; @future.apply] map in parallel on `future`; `progressr`
+[@progressr] signals progress. `BiocParallel` [@BiocParallel] flags
+failed elements (`bpok()`), re-runs only those (`BPREDO`) and logs
+tracebacks. `batchtools` [@batchtools] keeps a job registry that can be
+inspected and resumed. `targets` [@targets] branches over rows and
+files, saves workspaces for debugging, and manages a whole project's
+dependencies; `genproc` is designed to run inside a target, not instead
+of one.
+
+What none of them offers for a standalone batch procedure is one call
+on a function and a table that returns, in one object, the per-case log
+with tracebacks, the environment and input-file snapshot, and the means
+to re-run only what failed or changed, with no job registry to set up
+and no pipeline to restructure. `genproc` [@genproc] returns that
+object today. It targets procedures that write their output per case
+(a file, a table, a database row); collecting in-memory return values
+is out of scope. Whether this interface saves implementation and
+recovery work is the claim that Milestone 4 tests with outside users.
+What is missing today: the written contract behind the mask, the
+layers that make failed cases replayable and long runs observable,
+evidence from users other than the author, and the stewardship that
+lets the package outlive him.

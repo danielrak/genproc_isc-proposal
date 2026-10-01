@@ -1,5 +1,5 @@
 project:
-  title: "Isc-proposal"
+  title: "genproc ISC proposal"
   render:
     - "*.qmd"
     - "!proposal/"

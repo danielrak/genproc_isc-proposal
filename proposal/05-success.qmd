@@ -9,14 +9,44 @@ thorough understanding going in of what the risks are to delivery
 What does success look like?
 -->
 
+- **M1**: contract vignette on the documentation site, review
+  discussion closed and comments answered.
+- **M2**: 0.3.0 tagged and submitted to CRAN with `genproc_mask`, the
+  pre-grant test suite passing unchanged.
+- **M3**: 0.4.0 tagged and submitted to CRAN with replay, hash
+  fingerprints, live non-blocking progress and cancel.
+- **M4**: evaluation report published; `targets` vignette on the site.
+- **M5**: 1.0.0 tagged and submitted to CRAN, lifecycle stable,
+  governance documents merged, closing post published.
+
 ## Measuring success
 <!--
 How will we know when success is achieved, what markers can we use
 along the way
 -->
 
+- Acceptance tests in the repository: a failed case is identified,
+  unaffected cases complete, a targeted re-run stays linked to the
+  original attempt, reordering the mask keeps case identity, a changed
+  input selects the expected cases, unsupported cancellation gives a
+  clear message.
+- Coverage at or above the recorded baseline; zero regressions on the
+  compatibility suite.
+- Outside users complete the Milestone 4 tasks without help from the
+  proposer; their reports are public.
+- Issues and pull requests from others; at least one package or public
+  project using `genproc` by the end of the grant.
+- A co-maintainer who has reviewed changes and prepared one release; if
+  none, the closing report says who maintains the package.
+
 ## Future work
 <!--
 How could this be extended / developed in the future by yourself
 and/or the community in general?
 -->
+
+A `tar_genproc()` helper for `targets` pipelines; a checker that
+compares declared dependencies and input groups with what the function
+actually reads; `genprocShiny` rebuilt on the public API. The proposer
+remains maintainer after the grant until a hand-over is accepted; these
+directions are decided with the co-maintainer and the community.

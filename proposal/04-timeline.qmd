@@ -12,6 +12,14 @@ important because projects need to get up and running quickly.
  - [ ] Reporting framework
 -->
 
+Nothing needs to be built to start. The public repository
+<https://github.com/danielrak/genproc> already has an issue tracker,
+R CMD check on Linux, macOS and Windows, code coverage, and automatic
+deployment of the documentation site. In the first month a
+`CONTRIBUTING.md`, a code of conduct and a "Milestone 1 review" GitHub
+discussion are added and the coverage baseline is recorded. Reporting:
+a monthly note to the ISC, a `NEWS.md` entry and a tagged release at
+every milestone close.
 
 ## Technical delivery
 <!--
@@ -21,6 +29,41 @@ provide at least a high-level description of the implementation.
 Including target dates is really important as you need to be committed
 and the ISC need to have a means of tracking delivery
 -->
+
+Dates assume a contract signed by December 2026 and work from January
+2027.
+
+**M1, by 2027-03-31. Contract.** The vignette and glossary described
+above. Published for review; comments resolved before M2 code is
+merged.
+
+**M2, by 2027-05-31. `genproc_mask`.** S3 class with declared parameter
+dependencies, input groups and a content-based `case_id`. Constructor,
+validator, print method, tests for every documented mask pattern.
+Release 0.3.0 tagged and submitted to CRAN.
+
+**M3, by 2027-09-15. Execution layers.** `replay(result, case_id)`
+re-runs one failed case from its recorded arguments and reports any
+difference in inputs and package versions since the original run
+(rebuilding past software environments is out of scope);
+`method = "hash"` for content-hash input fingerprints; live progress of
+non-blocking runs, collected in the background and queried on demand;
+`cancel(job)` where the backend allows it, with a table of what each
+backend supports. Release 0.4.0 tagged and submitted to CRAN.
+
+**M4, by 2027-11-15. Evaluation and integration.** At least three users
+outside the project run the documented tasks on 0.4.0: find a failed
+case, read its traceback, re-run it, detect a changed input and re-run
+the affected cases. What they could and could not do is published and
+fixed where needed. A vignette shows a `genproc` run as one step of a
+`targets` pipeline, with declared file dependencies and the pipeline's
+behaviour when some cases fail.
+
+**M5, by 2027-12-31. 1.0.0 and hand-over.** Lifecycle set to stable;
+contributor guide, release checklist, design decisions and succession
+process; a prospective co-maintainer recruited among reviewers and
+evaluators and mentored through one release; closing post on the R
+Consortium blog; software paper drafted for the R Journal.
 
 ## Other aspects
 
@@ -38,6 +81,14 @@ to be shared quarterly on the R Consortium blog.
  - [ ] ISC meetings
 -->
 
+MIT code; CC BY 4.0 documentation, with the notice added in the first
+month; public GitHub hosting during and after the grant. Communication:
+announcement post at grant start, one R Consortium blog post per
+quarter, delivery post at the end; a talk submitted to useR! 2027;
+posts on Mastodon, Bluesky, LinkedIn and R-bloggers at each release.
+
+{{< pagebreak >}}
+
 ## Budget & funding plan
 
 <!--
@@ -45,7 +96,7 @@ Note that the maximum grant is $20k USD. The proposal should be in USD.
 
 Outline the milestones for development and how much funding will be
 required for each stage (as payments will be tied to project milestone
-completion). This also helps the ISC in the event of partial funding. 
+completion). This also helps the ISC in the event of partial funding.
 Each milestone should specify the work to be done and the
 expected outcomes, providing enough detail for the ISC to understand
 the scope of the project work and assess the likelihood of success.
@@ -58,3 +109,16 @@ to the project and the project period. The ISC reserves the right to vet
 how funds are used for each project separately. If in doubt, please reach
 out to us.
 -->
+
+Total **13 000 USD**, labour only, 260 hours at 50 USD per hour; no
+travel, hardware or cloud costs. The amounts allow partial funding in
+the order listed, within the standard schedule of 50% at signature and
+50% at completion.
+
+| Milestone | Deliverable | Hours | USD |
+|:----|:------------------------------------------------|----:|-------:|
+| M1 | Contract vignette, glossary, retry rules, public review | 50 | 2 500 |
+| M2 | `genproc_mask` class, compatibility suite, release 0.3.0 | 50 | 2 500 |
+| M3 | Replay, hash fingerprints, live progress, cancel, release 0.4.0 | 80 | 4 000 |
+| M4 | Evaluation by outside users, `targets` vignette | 40 | 2 000 |
+| M5 | Release 1.0.0, governance, succession process, closing post | 40 | 2 000 |

@@ -1,24 +1,32 @@
 ---
-title: "Proposal Title"
+title: "genproc: Robust, Logged and Reproducible Iteration in R"
 author:
-  - name: Annie Easley
-    orcid: 5555-5555-5555-5555
+  - name: Daniel Rakotomalala
+    email: rakdanielh@gmail.com
     affiliations:
-      - "Lewis Research Center, National Aeronautics and Space Administration"
+      - "Independent developer; author of the genproc and scrutr CRAN packages"
 
-date: today
+date: 2026-10-01
 date-format: iso
 format:
   html:
     embed-resources: true
   hikmah-pdf:
+    include-in-header:
+      text: |
+        \setlength{\droptitle}{-3em}
+        \pretitle{\par\vskip 1em \begin{flushleft}\LARGE\sffamily\bfseries}
+        \usepackage{etoolbox}
+        \AtBeginEnvironment{CSLReferences}{\footnotesize}
     geometry:
-      - left=1.25in
-      - right=1.25in
+      - top=0.8in
+      - bottom=0.8in
+      - left=0.9in
+      - right=0.9in
 bibliography: references.bib
 ---
 
-_This template was last revised on 2026-03-24._
+_ISC grant programme, round 2026-2. Source: <https://github.com/danielrak/genproc_isc-proposal>._
 
 
 {{< include proposal/00-exec-summary.qmd >}}
