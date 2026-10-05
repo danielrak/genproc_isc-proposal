@@ -17,7 +17,9 @@ Nothing needs to be built to start. The public repository
 R CMD check on Linux, macOS and Windows, code coverage, and automatic
 deployment of the documentation site. In the first month a
 `CONTRIBUTING.md`, a code of conduct and a "Milestone 1 review" GitHub
-discussion are added and the coverage baseline is recorded. Reporting:
+discussion are added, R users in public statistics and clinical data
+are invited to that review, and the coverage baseline is recorded.
+Reporting:
 a monthly note to the ISC, a `NEWS.md` entry and a tagged release at
 every milestone close.
 
@@ -47,9 +49,9 @@ re-runs one failed case from its recorded arguments and reports any
 difference in inputs and package versions since the original run
 (rebuilding past software environments is out of scope);
 `method = "hash"` for content-hash input fingerprints; live progress of
-non-blocking runs, collected in the background and queried on demand;
-`cancel(job)` where the backend allows it, with a table of what each
-backend supports. Release 0.4.0 tagged and submitted to CRAN.
+non-blocking runs, collected in the background and queried on demand,
+with a table of what each backend supports. Release 0.4.0 tagged and
+submitted to CRAN.
 
 **M4, by 2027-11-15. Evaluation and integration.** At least three users
 outside the project run the documented tasks on 0.4.0: find a failed
@@ -60,10 +62,10 @@ fixed where needed. A vignette shows a `genproc` run as one step of a
 behaviour when some cases fail.
 
 **M5, by 2027-12-31. 1.0.0 and hand-over.** Lifecycle set to stable;
-contributor guide, release checklist, design decisions and succession
+maintainer guide, release checklist, design decisions and succession
 process; a prospective co-maintainer recruited among reviewers and
 evaluators and mentored through one release; closing post on the R
-Consortium blog; software paper drafted for the R Journal.
+Consortium blog.
 
 ## Other aspects
 
@@ -81,13 +83,11 @@ to be shared quarterly on the R Consortium blog.
  - [ ] ISC meetings
 -->
 
-MIT code; CC BY 4.0 documentation, with the notice added in the first
-month; public GitHub hosting during and after the grant. Communication:
-announcement post at grant start, one R Consortium blog post per
-quarter, delivery post at the end; a talk submitted to useR! 2027;
-posts on Mastodon, Bluesky, LinkedIn and R-bloggers at each release.
-
-{{< pagebreak >}}
+MIT code; CC BY 4.0 documentation (notice added in the first month);
+public GitHub hosting during and after the grant. Communication: an
+announcement post, one R Consortium blog post per quarter and a
+delivery post; a talk submitted to useR! 2027; posts on social media
+and R-bloggers at each release.
 
 ## Budget & funding plan
 
@@ -110,15 +110,14 @@ how funds are used for each project separately. If in doubt, please reach
 out to us.
 -->
 
-Total **13 000 USD**, labour only, 260 hours at 50 USD per hour; no
+Total **10 000 USD**, labour only, 200 hours at 50 USD per hour; no
 travel, hardware or cloud costs. The amounts allow partial funding in
-the order listed, within the standard schedule of 50% at signature and
-50% at completion.
+the order listed (50% at signature, 50% at completion).
 
 | Milestone | Deliverable | Hours | USD |
 |:----|:------------------------------------------------|----:|-------:|
-| M1 | Contract vignette, glossary, retry rules, public review | 50 | 2 500 |
-| M2 | `genproc_mask` class, compatibility suite, release 0.3.0 | 50 | 2 500 |
-| M3 | Replay, hash fingerprints, live progress, cancel, release 0.4.0 | 80 | 4 000 |
-| M4 | Evaluation by outside users, `targets` vignette | 40 | 2 000 |
-| M5 | Release 1.0.0, governance, succession process, closing post | 40 | 2 000 |
+| M1 | Contract vignette, glossary, retry rules, public review | 40 | 2 000 |
+| M2 | `genproc_mask` class, compatibility suite, release 0.3.0 | 40 | 2 000 |
+| M3 | Replay, hash fingerprints, live progress, release 0.4.0 | 60 | 3 000 |
+| M4 | Evaluation by outside users, `targets` vignette | 30 | 1 500 |
+| M5 | Release 1.0.0, governance, succession process, closing post | 30 | 1 500 |

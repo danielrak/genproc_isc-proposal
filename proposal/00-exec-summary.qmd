@@ -27,7 +27,7 @@ diff_inputs(r_previous, r)   # which input files changed since the last run
 rerun_failed(r, convert)     # re-run the failed cases only
 ```
 
-Version 0.2.0 ships these five layers with 13 exported functions, close
+Version 0.2.0 ships all of this with 13 exported functions, close
 to 300 test blocks, continuous integration on Linux, macOS and Windows,
 and a documentation site. Its result object follows one compatibility
 rule: fields are added, never removed or renamed.
@@ -45,11 +45,10 @@ five milestones. Each funded milestone leaves a documented, tested and
 usable improvement: (1) the written contract, including the
 error-tolerance and retry rules; (2) a backwards-compatible
 `genproc_mask` class that implements it; (3) error replay, content-hash
-input fingerprints, live monitoring of non-blocking runs and
-cancellation; (4) evaluation by outside users and a worked `targets`
-integration; (5) a 1.0.0 release with a stable lifecycle and a
-succession process.
+input fingerprints and live monitoring of non-blocking runs; (4)
+evaluation by outside users and a worked `targets` integration; (5) a
+1.0.0 release with a stable lifecycle and a succession process.
 
-**Budget: 13 000 USD**, all labour, itemised by milestone. If the ISC
+**Budget: 10 000 USD**, all labour, itemised by milestone. If the ISC
 funds only the first three milestones, the community still gets the
 contract and a package that is strictly more capable than today.

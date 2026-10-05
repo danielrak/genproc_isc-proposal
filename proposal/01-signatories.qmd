@@ -19,14 +19,13 @@ to the project.
 
 **Daniel Rakotomalala** (proposer, sole developer). Author and
 maintainer of `genproc` and of `scrutr` (data validation), both on
-CRAN, and of `cryptRopen` (dataset pseudonymisation, on GitHub). PhD in
-economics. Data scientist and project lead in a national statistical
+CRAN. PhD in economics. Data scientist and project lead in a national statistical
 service, where the pipelines that motivated `genproc` run daily.
 Skills: R package development (S3, non-standard evaluation, AST
-rewriting), the `future` ecosystem, CI/CD, technical writing. GitHub:
-<https://github.com/danielrak>; project site:
-<https://danielrak.github.io/genproc/>. He works on `genproc` outside
-a full-time job; the 260 hours below are about five hours a week.
+rewriting), the `future` ecosystem, CI/CD, technical writing. Project
+site: <https://danielrak.github.io/genproc/>. He works on `genproc`
+outside a full-time job; the 200 hours below are about four hours a
+week.
 
 The proposer uses AI coding assistants (large language models) to draft
 code, tests and text, including parts of this document. He designs,
@@ -54,10 +53,11 @@ proposal has been discussed with.
 - **Henrik Bengtsson**, author of `future`, `future.apply` and
   `progressr`, on which the parallel, non-blocking and monitoring layers
   are built, and the R Foundation's representative on the ISC.
-  Contacted in April 2026; he replied in detail. On the whole, he saw
-  these topics as ones the R community would benefit from
-  standardising, for sequential as well as parallel processing. Three
-  specific points shaped this proposal: define the retry rules for
+  Contacted in April 2026; he replied in detail. He noted that error
+  handling in `apply()`-style loops is a frequent user question and, on
+  the whole, saw these topics as ones the R community would benefit
+  from standardising, for sequential as well as parallel processing.
+  Three specific points shaped this proposal: define the retry rules for
   sequential processing first, then carry them to parallel processing;
   use `progressr` conditions for monitoring (done in 0.2.0) and extend
   them to non-blocking runs (Milestone 3); stay above `future::plan()`
@@ -68,4 +68,4 @@ proposal has been discussed with.
 
 No other ISC member has been consulted. Feedback from R users in
 public statistics and clinical data will be sought in the start-up
-phase.
+phase, through the Milestone 1 review.

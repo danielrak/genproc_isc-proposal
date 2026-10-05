@@ -6,7 +6,7 @@ author:
     affiliations:
       - "Independent developer; author of the genproc and scrutr CRAN packages"
 
-date: 2026-10-01
+date: today
 date-format: iso
 format:
   html:
@@ -26,7 +26,7 @@ format:
 bibliography: references.bib
 ---
 
-_ISC grant programme, round 2026-2. Source: <https://github.com/danielrak/genproc_isc-proposal>._
+_ISC grant programme, round 2026-2, revised submission with the budget within the 10 000 USD limit. Source: <https://github.com/danielrak/genproc_isc-proposal>._
 
 
 {{< include proposal/00-exec-summary.qmd >}}

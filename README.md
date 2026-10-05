@@ -13,11 +13,11 @@ with input-file fingerprints, and helpers to re-run only what failed or
 changed. Parallel, non-blocking and progress-monitoring layers compose on top.
 
 The proposal asks for twelve months of work (January to December 2027) on five
-milestones, 13 000 USD in total, all labour:
+milestones, 10 000 USD in total, all labour:
 
 1. A written, versioned contract for iterated runs (model of the iterated process, error-tolerance and retry rules), published for review.
 2. A backwards-compatible `genproc_mask` class implementing that contract.
-3. The remaining execution layers: error replay, content-hash input fingerprints, live monitoring of non-blocking runs, cancellation.
+3. The remaining execution layers: error replay, content-hash input fingerprints, live monitoring of non-blocking runs.
 4. Evaluation by outside users on documented failure-and-recovery tasks, and a worked `targets` integration.
 5. A 1.0.0 release with a stable lifecycle, governance documents and a succession process.
 
