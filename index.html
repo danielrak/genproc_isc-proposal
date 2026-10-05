@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Daniel Rakotomalala">
-<meta name="dcterms.date" content="2026-10-01">
+<meta name="dcterms.date" content="2026-10-05">
 
 <title>genproc: Robust, Logged and Reproducible Iteration in R</title>
 <style>
@@ -2256,7 +2256,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2026-10-01</p>
+      <p class="date">2026-10-05</p>
     </div>
   </div>
   
@@ -2268,7 +2268,7 @@ vertical-align: -.125em;
 </header>
 
 
-<p><em>ISC grant programme, round 2026-2. Source: <a href="https://github.com/danielrak/genproc_isc-proposal" class="uri">https://github.com/danielrak/genproc_isc-proposal</a>.</em></p>
+<p><em>ISC grant programme, round 2026-2, revised submission with the budget within the 10 000 USD limit. Source: <a href="https://github.com/danielrak/genproc_isc-proposal" class="uri">https://github.com/danielrak/genproc_isc-proposal</a>.</em></p>
 <section id="executive-summary" class="level1">
 <h1>Executive Summary</h1>
 <!--
@@ -2280,10 +2280,10 @@ It should be a comprehensive high-level overview that captures the essence of th
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">errors</span>(r)                    <span class="co"># the failed cases, with their tracebacks</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">diff_inputs</span>(r_previous, r)   <span class="co"># which input files changed since the last run</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rerun_failed</span>(r, convert)     <span class="co"># re-run the failed cases only</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Version 0.2.0 ships these five layers with 13 exported functions, close to 300 test blocks, continuous integration on Linux, macOS and Windows, and a documentation site. Its result object follows one compatibility rule: fields are added, never removed or renamed.</p>
+<p>Version 0.2.0 ships all of this with 13 exported functions, close to 300 test blocks, continuous integration on Linux, macOS and Windows, and a documentation site. Its result object follows one compatibility rule: fields are added, never removed or renamed.</p>
 <p>The ambition goes beyond one package: a written, versioned contract for iterated runs in R (mask, result, errors, retries, reproducibility, monitoring), published for review and proposed to other package authors, with <code>genproc</code> as its reference implementation. Henrik Bengtsson, author of <code>future</code> and the R Foundation’s representative on the ISC, commented in detail on the outline in April 2026 and saw the same need; his advice shaped the plan below.</p>
-<p>The grant funds twelve months of work, January to December 2027, in five milestones. Each funded milestone leaves a documented, tested and usable improvement: (1) the written contract, including the error-tolerance and retry rules; (2) a backwards-compatible <code>genproc_mask</code> class that implements it; (3) error replay, content-hash input fingerprints, live monitoring of non-blocking runs and cancellation; (4) evaluation by outside users and a worked <code>targets</code> integration; (5) a 1.0.0 release with a stable lifecycle and a succession process.</p>
-<p><strong>Budget: 13 000 USD</strong>, all labour, itemised by milestone. If the ISC funds only the first three milestones, the community still gets the contract and a package that is strictly more capable than today.</p>
+<p>The grant funds twelve months of work, January to December 2027, in five milestones. Each funded milestone leaves a documented, tested and usable improvement: (1) the written contract, including the error-tolerance and retry rules; (2) a backwards-compatible <code>genproc_mask</code> class that implements it; (3) error replay, content-hash input fingerprints and live monitoring of non-blocking runs; (4) evaluation by outside users and a worked <code>targets</code> integration; (5) a 1.0.0 release with a stable lifecycle and a succession process.</p>
+<p><strong>Budget: 10 000 USD</strong>, all labour, itemised by milestone. If the ISC funds only the first three milestones, the community still gets the contract and a package that is strictly more capable than today.</p>
 </section>
 <section id="signatories" class="level1">
 <h1>Signatories</h1>
@@ -2304,7 +2304,7 @@ the proposal gets accepted and are already signed up and rearing to
 go? Briefly describe all participants and the skills they will bring
 to the project.
 -->
-<p><strong>Daniel Rakotomalala</strong> (proposer, sole developer). Author and maintainer of <code>genproc</code> and of <code>scrutr</code> (data validation), both on CRAN, and of <code>cryptRopen</code> (dataset pseudonymisation, on GitHub). PhD in economics. Data scientist and project lead in a national statistical service, where the pipelines that motivated <code>genproc</code> run daily. Skills: R package development (S3, non-standard evaluation, AST rewriting), the <code>future</code> ecosystem, CI/CD, technical writing. GitHub: <a href="https://github.com/danielrak" class="uri">https://github.com/danielrak</a>; project site: <a href="https://danielrak.github.io/genproc/" class="uri">https://danielrak.github.io/genproc/</a>. He works on <code>genproc</code> outside a full-time job; the 260 hours below are about five hours a week.</p>
+<p><strong>Daniel Rakotomalala</strong> (proposer, sole developer). Author and maintainer of <code>genproc</code> and of <code>scrutr</code> (data validation), both on CRAN. PhD in economics. Data scientist and project lead in a national statistical service, where the pipelines that motivated <code>genproc</code> run daily. Skills: R package development (S3, non-standard evaluation, AST rewriting), the <code>future</code> ecosystem, CI/CD, technical writing. Project site: <a href="https://danielrak.github.io/genproc/" class="uri">https://danielrak.github.io/genproc/</a>. He works on <code>genproc</code> outside a full-time job; the 200 hours below are about four hours a week.</p>
 <p>The proposer uses AI coding assistants (large language models) to draft code, tests and text, including parts of this document. He designs, reviews every change, tests the package by hand and takes every decision; the code is kept readable so that it can be maintained without such tools.</p>
 </section>
 <section id="contributors" class="level2">
@@ -2323,10 +2323,10 @@ proposal? This should include any R Consortium & ISC members who the
 proposal has been discussed with.
 -->
 <ul>
-<li><strong>Henrik Bengtsson</strong>, author of <code>future</code>, <code>future.apply</code> and <code>progressr</code>, on which the parallel, non-blocking and monitoring layers are built, and the R Foundation’s representative on the ISC. Contacted in April 2026; he replied in detail. On the whole, he saw these topics as ones the R community would benefit from standardising, for sequential as well as parallel processing. Three specific points shaped this proposal: define the retry rules for sequential processing first, then carry them to parallel processing; use <code>progressr</code> conditions for monitoring (done in 0.2.0) and extend them to non-blocking runs (Milestone 3); stay above <code>future::plan()</code> and leave backend negotiation to the futureverse.</li>
+<li><strong>Henrik Bengtsson</strong>, author of <code>future</code>, <code>future.apply</code> and <code>progressr</code>, on which the parallel, non-blocking and monitoring layers are built, and the R Foundation’s representative on the ISC. Contacted in April 2026; he replied in detail. He noted that error handling in <code>apply()</code>-style loops is a frequent user question and, on the whole, saw these topics as ones the R community would benefit from standardising, for sequential as well as parallel processing. Three specific points shaped this proposal: define the retry rules for sequential processing first, then carry them to parallel processing; use <code>progressr</code> conditions for monitoring (done in 0.2.0) and extend them to non-blocking runs (Milestone 3); stay above <code>future::plan()</code> and leave backend negotiation to the futureverse.</li>
 <li><strong>William Michael Landau</strong>, author of <code>targets</code>. Contacted in April 2026 on the positioning of <code>genproc</code> relative to <code>targets</code>. No reply at the time of writing.</li>
 </ul>
-<p>No other ISC member has been consulted. Feedback from R users in public statistics and clinical data will be sought in the start-up phase.</p>
+<p>No other ISC member has been consulted. Feedback from R users in public statistics and clinical data will be sought in the start-up phase, through the Milestone 1 review.</p>
 </section>
 </section>
 <section id="the-problem" class="level1">
@@ -2386,12 +2386,12 @@ Include concrete actions you will take and estimated timeline.
 <ol type="1">
 <li><strong>Write the contract.</strong> The package relies on an implicit model: a <em>unit</em> is a mask row, a <em>parameter</em> a mask column, and operations are independent across units. Milestone 1 writes it down as a versioned vignette and glossary, and defines the error-tolerance and retry rules for sequential runs first, then for parallel runs: what a retry is, when it is allowed, how it is logged, and what counts as a handled error as opposed to an interruption, a worker failure or a partly written output. It adds two concepts, shown on a file-conversion mask with columns <code>src_dir</code>, <code>src_file</code> and <code>dst_file</code>. A <em>parameter dependency</em> says that <code>dst_file</code> is computed from <code>src_file</code> (same name, new extension), so it is derived rather than typed and cannot drift out of step. An <em>input group</em> says that <code>src_dir</code> and <code>src_file</code> together name one input file, so fingerprints and <code>diff_inputs()</code> follow that file rather than two unrelated strings. Published for public review before dependent code is merged.</li>
 <li><strong>Implement it in the mask.</strong> A <code>genproc_mask</code> S3 class on which the user declares dependencies and input groups, and which gives each case an identity based on its free parameters, so that reordering rows does not change it and repeated rows are told apart. Every existing <code>data.frame</code> mask keeps working unchanged.</li>
-<li><strong>Finish the execution layers.</strong> Error replay, content-hash input fingerprints, live progress for non-blocking runs, cancellation, each with its supported backends documented.</li>
-<li><strong>Test it with others.</strong> Outside users run documented failure-and-recovery tasks on a beta release and their feedback is published; a worked example shows a <code>genproc</code> run as one step of a <code>targets</code> pipeline.</li>
-<li><strong>Prepare the hand-over.</strong> Release 1.0.0 with lifecycle “stable”, a contributor guide, a release checklist, documented design decisions and a succession process.</li>
+<li><strong>Finish the execution layers.</strong> Error replay, content-hash input fingerprints and live progress for non-blocking runs, each with its supported backends documented.</li>
+<li><strong>Test it with others.</strong> Outside users run documented failure-and-recovery tasks on release 0.4.0 and their feedback is published; a worked example shows a <code>genproc</code> run as one step of a <code>targets</code> pipeline.</li>
+<li><strong>Prepare the hand-over.</strong> Release 1.0.0 with lifecycle “stable”, a maintainer guide, a release checklist, documented design decisions and a succession process.</li>
 </ol>
 <p>A Shiny proof of concept (<a href="https://github.com/danielrak/genprocShiny" class="uri">https://github.com/danielrak/genprocShiny</a>) stays outside the grant; it will be rebuilt on the public API later.</p>
-<p>Benefits at three levels. Practitioners get a ready-made contract instead of hand-written scaffolding. Package authors get a mask and result API to build domain tools on. The ecosystem gets a written, reviewed contract for what a robust iterated run is.</p>
+<p>Benefits at three levels: practitioners get a ready-made contract instead of hand-written scaffolding; package authors get a mask and result API to build on; the ecosystem gets a written, reviewed contract for what a robust iterated run is.</p>
 </section>
 <section id="detail" class="level2">
 <h2 class="anchored" data-anchor-id="detail">Detail</h2>
@@ -2406,14 +2406,14 @@ Depending on project type the detail section should include:
 <!--
 What is the smallest thing you can build that delivers value to your users?
 -->
-<p>The MVP already exists: <code>genproc</code> 0.2.0 on CRAN, with its five layers, result contract, tests and documentation. Each milestone adds one reviewable artefact in a tagged release.</p>
+<p>The MVP already exists: <code>genproc</code> 0.2.0 on CRAN, with the five layers described under Architecture, result contract, tests and documentation. Each milestone adds one reviewable artefact in a tagged release.</p>
 </section>
 <section id="architecture" class="level3">
 <h3 class="anchored" data-anchor-id="architecture">Architecture</h3>
 <!--
 What does the high-level architecture look like?
 -->
-<p><code>genproc()</code> wraps an iteration kernel in orthogonal layers: <em>logged</em> and <em>reproducibility</em> are always on; <em>parallel</em> (<code>future.apply</code> over the user’s or a temporary <code>future::plan()</code>), <em>non-blocking</em> (a background future polled with <code>status()</code> and collected with <code>await()</code>) and <em>monitoring</em> (<code>progressr</code> conditions) are opt-in and compose. A new layer is an extra argument to <code>genproc()</code> and extra fields on <code>genproc_result</code>.</p>
+<p><code>genproc()</code> wraps an iteration kernel in orthogonal layers: <em>logged</em> and <em>reproducibility</em> are always on; <em>parallel</em> (<code>future.apply</code>), <em>non-blocking</em> (a background future polled with <code>status()</code> and collected with <code>await()</code>) and <em>monitoring</em> (<code>progressr</code> conditions) are opt-in and compose. A new layer is an extra argument to <code>genproc()</code> and extra fields on <code>genproc_result</code>.</p>
 </section>
 <section id="assumptions" class="level3">
 <h3 class="anchored" data-anchor-id="assumptions">Assumptions</h3>
@@ -2421,11 +2421,11 @@ What does the high-level architecture look like?
 What assumptions are you making that, if proven false, would invalidate the project?
 -->
 <ul>
-<li>The <code>future</code> framework remains the standard for R parallelism. The futureverse plans automatic negotiation between backends; <code>genproc</code> stays above <code>plan()</code> and does not negotiate resources itself, so that evolution is an opportunity, not a conflict.</li>
+<li>The <code>future</code> framework remains the standard for R parallelism. <code>genproc</code> stays above <code>plan()</code> and does not negotiate resources itself, so the backend negotiation the futureverse plans is an opportunity, not a conflict.</li>
 <li>A backwards-compatible generalisation of the mask is feasible. The 0.2.0 test suite covers every documented mask pattern and gates every Milestone 2 change.</li>
 <li>One contract serves the settings of the Problem section; the Milestone 1 review and the Milestone 4 evaluation test this.</li>
 </ul>
-<p>Failure modes and their handling. The sole developer is unavailable for a period: milestones are ordered by value, the ISC is told in the next monthly note, and a revised schedule or a reduced scope is agreed. Live monitoring of non-blocking runs depends on backend behaviour: the fallback is to collect progress in the background and report on request. <code>genproc_mask</code> breaks an existing usage: reverted and redesigned behind the compatibility suite before release. Too few outside users for Milestone 4: the tasks are run with the proposer’s own team and the report says so. No co-maintainer by Milestone 5: 1.0.0 ships, the proposer remains maintainer until a hand-over is accepted, and the closing report says so.</p>
+<p>Failure modes and their handling. The sole developer is unavailable for a period: milestones are ordered by value, the ISC is told in the next monthly note, and a revised schedule or a reduced scope is agreed. <code>genproc_mask</code> breaks an existing usage: reverted and redesigned behind the compatibility suite before release. Too few outside users for Milestone 4: the tasks are run with the proposer’s own team and the report says so. No co-maintainer by Milestone 5: 1.0.0 ships, the proposer remains maintainer until a hand-over is accepted, and the closing report says so.</p>
 </section>
 <section id="external-dependencies" class="level3">
 <h3 class="anchored" data-anchor-id="external-dependencies">External dependencies</h3>
@@ -2450,7 +2450,7 @@ important because projects need to get up and running quickly.
  - [ ] License decisions
  - [ ] Reporting framework
 -->
-<p>Nothing needs to be built to start. The public repository <a href="https://github.com/danielrak/genproc" class="uri">https://github.com/danielrak/genproc</a> already has an issue tracker, R CMD check on Linux, macOS and Windows, code coverage, and automatic deployment of the documentation site. In the first month a <code>CONTRIBUTING.md</code>, a code of conduct and a “Milestone 1 review” GitHub discussion are added and the coverage baseline is recorded. Reporting: a monthly note to the ISC, a <code>NEWS.md</code> entry and a tagged release at every milestone close.</p>
+<p>Nothing needs to be built to start. The public repository <a href="https://github.com/danielrak/genproc" class="uri">https://github.com/danielrak/genproc</a> already has an issue tracker, R CMD check on Linux, macOS and Windows, code coverage, and automatic deployment of the documentation site. In the first month a <code>CONTRIBUTING.md</code>, a code of conduct and a “Milestone 1 review” GitHub discussion are added, R users in public statistics and clinical data are invited to that review, and the coverage baseline is recorded. Reporting: a monthly note to the ISC, a <code>NEWS.md</code> entry and a tagged release at every milestone close.</p>
 </section>
 <section id="technical-delivery" class="level2">
 <h2 class="anchored" data-anchor-id="technical-delivery">Technical delivery</h2>
@@ -2464,9 +2464,9 @@ and the ISC need to have a means of tracking delivery
 <p>Dates assume a contract signed by December 2026 and work from January 2027.</p>
 <p><strong>M1, by 2027-03-31. Contract.</strong> The vignette and glossary described above. Published for review; comments resolved before M2 code is merged.</p>
 <p><strong>M2, by 2027-05-31. <code>genproc_mask</code>.</strong> S3 class with declared parameter dependencies, input groups and a content-based <code>case_id</code>. Constructor, validator, print method, tests for every documented mask pattern. Release 0.3.0 tagged and submitted to CRAN.</p>
-<p><strong>M3, by 2027-09-15. Execution layers.</strong> <code>replay(result, case_id)</code> re-runs one failed case from its recorded arguments and reports any difference in inputs and package versions since the original run (rebuilding past software environments is out of scope); <code>method = &quot;hash&quot;</code> for content-hash input fingerprints; live progress of non-blocking runs, collected in the background and queried on demand; <code>cancel(job)</code> where the backend allows it, with a table of what each backend supports. Release 0.4.0 tagged and submitted to CRAN.</p>
+<p><strong>M3, by 2027-09-15. Execution layers.</strong> <code>replay(result, case_id)</code> re-runs one failed case from its recorded arguments and reports any difference in inputs and package versions since the original run (rebuilding past software environments is out of scope); <code>method = &quot;hash&quot;</code> for content-hash input fingerprints; live progress of non-blocking runs, collected in the background and queried on demand, with a table of what each backend supports. Release 0.4.0 tagged and submitted to CRAN.</p>
 <p><strong>M4, by 2027-11-15. Evaluation and integration.</strong> At least three users outside the project run the documented tasks on 0.4.0: find a failed case, read its traceback, re-run it, detect a changed input and re-run the affected cases. What they could and could not do is published and fixed where needed. A vignette shows a <code>genproc</code> run as one step of a <code>targets</code> pipeline, with declared file dependencies and the pipeline’s behaviour when some cases fail.</p>
-<p><strong>M5, by 2027-12-31. 1.0.0 and hand-over.</strong> Lifecycle set to stable; contributor guide, release checklist, design decisions and succession process; a prospective co-maintainer recruited among reviewers and evaluators and mentored through one release; closing post on the R Consortium blog; software paper drafted for the R Journal.</p>
+<p><strong>M5, by 2027-12-31. 1.0.0 and hand-over.</strong> Lifecycle set to stable; maintainer guide, release checklist, design decisions and succession process; a prospective co-maintainer recruited among reviewers and evaluators and mentored through one release; closing post on the R Consortium blog.</p>
 </section>
 <section id="other-aspects" class="level2">
 <h2 class="anchored" data-anchor-id="other-aspects">Other aspects</h2>
@@ -2483,8 +2483,7 @@ to be shared quarterly on the R Consortium blog.
  - [ ] UseR!
  - [ ] ISC meetings
 -->
-<p>MIT code; CC BY 4.0 documentation, with the notice added in the first month; public GitHub hosting during and after the grant. Communication: announcement post at grant start, one R Consortium blog post per quarter, delivery post at the end; a talk submitted to useR! 2027; posts on Mastodon, Bluesky, LinkedIn and R-bloggers at each release.</p>
-<div style="page-break-after: always;"></div>
+<p>MIT code; CC BY 4.0 documentation (notice added in the first month); public GitHub hosting during and after the grant. Communication: an announcement post, one R Consortium blog post per quarter and a delivery post; a talk submitted to useR! 2027; posts on social media and R-bloggers at each release.</p>
 </section>
 <section id="budget-funding-plan" class="level2">
 <h2 class="anchored" data-anchor-id="budget-funding-plan">Budget &amp; funding plan</h2>
@@ -2506,7 +2505,7 @@ to the project and the project period. The ISC reserves the right to vet
 how funds are used for each project separately. If in doubt, please reach
 out to us.
 -->
-<p>Total <strong>13 000 USD</strong>, labour only, 260 hours at 50 USD per hour; no travel, hardware or cloud costs. The amounts allow partial funding in the order listed, within the standard schedule of 50% at signature and 50% at completion.</p>
+<p>Total <strong>10 000 USD</strong>, labour only, 200 hours at 50 USD per hour; no travel, hardware or cloud costs. The amounts allow partial funding in the order listed (50% at signature, 50% at completion).</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 7%">
@@ -2526,32 +2525,32 @@ out to us.
 <tr class="odd">
 <td style="text-align: left;">M1</td>
 <td style="text-align: left;">Contract vignette, glossary, retry rules, public review</td>
-<td style="text-align: right;">50</td>
-<td style="text-align: right;">2 500</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">2 000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">M2</td>
 <td style="text-align: left;"><code>genproc_mask</code> class, compatibility suite, release 0.3.0</td>
-<td style="text-align: right;">50</td>
-<td style="text-align: right;">2 500</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">2 000</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">M3</td>
-<td style="text-align: left;">Replay, hash fingerprints, live progress, cancel, release 0.4.0</td>
-<td style="text-align: right;">80</td>
-<td style="text-align: right;">4 000</td>
+<td style="text-align: left;">Replay, hash fingerprints, live progress, release 0.4.0</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">3 000</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">M4</td>
 <td style="text-align: left;">Evaluation by outside users, <code>targets</code> vignette</td>
-<td style="text-align: right;">40</td>
-<td style="text-align: right;">2 000</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">1 500</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">M5</td>
 <td style="text-align: left;">Release 1.0.0, governance, succession process, closing post</td>
-<td style="text-align: right;">40</td>
-<td style="text-align: right;">2 000</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">1 500</td>
 </tr>
 </tbody>
 </table>
@@ -2571,7 +2570,7 @@ What does success look like?
 <ul>
 <li><strong>M1</strong>: contract vignette on the documentation site, review discussion closed and comments answered.</li>
 <li><strong>M2</strong>: 0.3.0 tagged and submitted to CRAN with <code>genproc_mask</code>, the pre-grant test suite passing unchanged.</li>
-<li><strong>M3</strong>: 0.4.0 tagged and submitted to CRAN with replay, hash fingerprints, live non-blocking progress and cancel.</li>
+<li><strong>M3</strong>: 0.4.0 tagged and submitted to CRAN with replay, hash fingerprints and live non-blocking progress.</li>
 <li><strong>M4</strong>: evaluation report published; <code>targets</code> vignette on the site.</li>
 <li><strong>M5</strong>: 1.0.0 tagged and submitted to CRAN, lifecycle stable, governance documents merged, closing post published.</li>
 </ul>
@@ -2583,7 +2582,7 @@ How will we know when success is achieved, what markers can we use
 along the way
 -->
 <ul>
-<li>Acceptance tests in the repository: a failed case is identified, unaffected cases complete, a targeted re-run stays linked to the original attempt, reordering the mask keeps case identity, a changed input selects the expected cases, unsupported cancellation gives a clear message.</li>
+<li>Acceptance tests in the repository: a failed case is identified, unaffected cases complete, a targeted re-run stays linked to the original attempt, reordering the mask keeps case identity, a changed input selects the expected cases.</li>
 <li>Coverage at or above the recorded baseline; zero regressions on the compatibility suite.</li>
 <li>Outside users complete the Milestone 4 tasks without help from the proposer; their reports are public.</li>
 <li>Issues and pull requests from others; at least one package or public project using <code>genproc</code> by the end of the grant.</li>
@@ -2596,7 +2595,7 @@ along the way
 How could this be extended / developed in the future by yourself
 and/or the community in general?
 -->
-<p>A <code>tar_genproc()</code> helper for <code>targets</code> pipelines; a checker that compares declared dependencies and input groups with what the function actually reads; <code>genprocShiny</code> rebuilt on the public API. The proposer remains maintainer after the grant until a hand-over is accepted; these directions are decided with the co-maintainer and the community.</p>
+<p>Cancellation of non-blocking runs where the backend allows it; a <code>tar_genproc()</code> helper for <code>targets</code> pipelines; a checker that compares declared dependencies and input groups with what the function actually reads; <code>genprocShiny</code> rebuilt on the public API; a software paper for the R Journal. The proposer remains maintainer after the grant until a hand-over is accepted; these directions are decided with the co-maintainer and the community.</p>
 <div class="refs">
 
 </div>
